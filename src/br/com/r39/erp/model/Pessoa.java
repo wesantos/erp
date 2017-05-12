@@ -2,7 +2,7 @@ package br.com.r39.erp.model;
 
 public class Pessoa {
 	
-	private int Id;
+	private Integer Id;
 	private String Nome;
 	private String Email;
 	private String Observacao;

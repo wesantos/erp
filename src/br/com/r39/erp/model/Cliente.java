@@ -1,7 +1,7 @@
 package br.com.r39.erp.model;
 
 public class Cliente {
-	private int Id;
+	private Integer Id;
 	private String Nome;
 	private String LatLong;
 	private String Endereco;
