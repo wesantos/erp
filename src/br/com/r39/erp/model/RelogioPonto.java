@@ -1,32 +1,48 @@
 package br.com.r39.erp.model;
 
 import java.util.Calendar;
+import java.util.List;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
+
+@Entity
 public class RelogioPonto {
 
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
-	private Pessoa Pessoa;
-	private Cliente Cliente;
 	
+	@OneToMany
+	private List<Pessoa> Pessoa;
+	@OneToMany
+	private List<Cliente> Cliente;
+	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar DataHora;
 	private String LatLong;
 	private String Observacao;
+	
 	public Integer getId() {
 		return Id;
 	}
 	public void setId(Integer id) {
 		Id = id;
 	}
-	public Pessoa getPessoa() {
+
+	public List<Pessoa> getPessoa() {
 		return Pessoa;
 	}
-	public void setPessoa(Pessoa pessoa) {
+	public void setPessoa(List<Pessoa> pessoa) {
 		Pessoa = pessoa;
 	}
-	public Cliente getCliente() {
+	public List<Cliente> getCliente() {
 		return Cliente;
 	}
-	public void setCliente(Cliente cliente) {
+	public void setCliente(List<Cliente> cliente) {
 		Cliente = cliente;
 	}
 	public Calendar getDataHora() {
