@@ -1,12 +1,20 @@
 package br.com.r39.erp.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
 
+@Entity 
 public class Cliente {
+	
+	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
 	private String Nome;
 	private String LatLong;
 	private String Endereco;
 	private String Observacao;
+	
 	public int getId() {
 		return Id;
 	}
