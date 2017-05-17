@@ -32,7 +32,6 @@ public class RelogioPonto {
 	public void setId(Integer id) {
 		Id = id;
 	}
-
 	public List<Pessoa> getPessoa() {
 		return Pessoa;
 	}

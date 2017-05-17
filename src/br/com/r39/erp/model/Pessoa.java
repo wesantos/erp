@@ -7,13 +7,20 @@ import javax.persistence.Id;
 
 @Entity
 public class Pessoa {
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	public Pessoa(){
+		super();
+	}
+	public Pessoa(String nome,String email,String observacao){
+		this.setNome(nome);
+		this.setEmail(email);
+		this.setObservacao(observacao);
+	}
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
-	
 	private String Nome;
 	private String Email;
 	private String Observacao;
-	
 	
 	public int getId() {
 		return Id;

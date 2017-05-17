@@ -8,6 +8,15 @@ import javax.persistence.Id;
 @Entity 
 public class Cliente {
 	
+	public Cliente(){
+		super();
+	}
+	public Cliente(String nome,String latLong, String endereco,String observacao){
+		this.setNome(nome);
+		this.setLatLong(latLong);
+		this.setEndereco(endereco);
+		this.setObservacao(observacao);
+	}
 	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
 	private String Nome;
