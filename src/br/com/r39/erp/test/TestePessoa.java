@@ -2,7 +2,6 @@ package br.com.r39.erp.test;
 
 import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.EntityManager;
@@ -12,6 +11,7 @@ import javax.persistence.Persistence;
 import br.com.r39.erp.model.Cliente;
 import br.com.r39.erp.model.Pessoa;
 import br.com.r39.erp.model.RelogioPonto;
+import br.com.r39.erp.model.TipoMarcacao;
 
 public class TestePessoa {
 
@@ -38,6 +38,7 @@ public class TestePessoa {
 		
 		
 		em.getTransaction().begin();
+		
 		for (Pessoa p : ListaPessoas) {
 			em.persist(p);		
 		}
@@ -45,33 +46,26 @@ public class TestePessoa {
 			em.persist(c);	
 			
 		}
-		
-		ListaClientes.clear();
-		ListaClientes.add(em.find(Cliente.class,3));
-		ListaClientes.add(em.find(Cliente.class,2));
-		ListaClientes.add(em.find(Cliente.class,6));
-		ListaPessoas.clear();
-		ListaPessoas.add(em.find(Pessoa.class, 1));
-		ListaPessoas.add(em.find(Pessoa.class, 2));
-		ListaPessoas.add(em.find(Pessoa.class, 6));
 				
-		Date date = new Date();
+		RelogioPonto PontoInicio = new RelogioPonto();
+		PontoInicio.setDataHora(Calendar.getInstance());
+		PontoInicio.setCliente(em.find(Cliente.class,3));
+		PontoInicio.setPessoa(em.find(Pessoa.class, 2));
+		PontoInicio.setMarcacao(TipoMarcacao.INICIO);
+		PontoInicio.setLatLong(em.find(Cliente.class,3).getLatLong());
 		
-		Calendar cal = Calendar.getInstance();
+		RelogioPonto PontoAlmoco = new RelogioPonto();
+		PontoAlmoco.setDataHora(Calendar.getInstance());
+		PontoAlmoco.setCliente(em.find(Cliente.class,3));
+		PontoAlmoco.setPessoa(em.find(Pessoa.class, 2));
+		PontoAlmoco.setMarcacao(TipoMarcacao.ALMOCO);
+		PontoAlmoco.setLatLong(em.find(Cliente.class,3).getLatLong());
 		
-		cal.setTime(date);
 		
-		RelogioPonto Ponto = new RelogioPonto();
-		Ponto.setDataHora(cal);
-		Ponto.setCliente(em.find(Cliente.class,3));
-		Ponto.setPessoa(em.find(Pessoa.class, 2));
-		Ponto.setLatLong(em.find(Cliente.class,3).getLatLong());
-		em.persist(Ponto);
+		em.persist(PontoInicio);
+		em.persist(PontoAlmoco);
 		em.getTransaction().commit();
-		em.close();
-		
-		
-		
+		em.close();		
 
 	}
 
