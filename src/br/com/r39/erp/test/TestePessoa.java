@@ -64,6 +64,7 @@ public class TestePessoa {
 		
 		em.persist(PontoInicio);
 		em.persist(PontoAlmoco);
+		
 		em.getTransaction().commit();
 		em.close();		
 

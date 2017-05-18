@@ -3,6 +3,7 @@ package br.com.r39.dao;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.criteria.CriteriaQuery;
 
 import br.com.r39.erp.model.Pessoa;
 
@@ -31,7 +32,9 @@ public class PessoaDAO {
 	}
 		
 		public List<Pessoa> lista() {
-			return manager.createQuery("SELECT e FROM "+ Pessoa.class +" e",Pessoa.class).getResultList();
+			CriteriaQuery<Pessoa> criteria = manager.getCriteriaBuilder().createQuery(Pessoa.class);
+		    criteria.select(criteria.from(Pessoa.class));
+			return manager.createQuery(criteria).getResultList();
 		}
 
 		
