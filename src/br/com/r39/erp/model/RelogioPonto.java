@@ -1,28 +1,44 @@
 package br.com.r39.erp.model;
 
 import java.util.Calendar;
-import java.util.List;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
 public class RelogioPonto {
 
-	@Id @GeneratedValue(strategy=GenerationType.IDENTITY)
+	@Id 
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Integer Id;
 	
-	@OneToMany
-	private List<Pessoa> Pessoa;
-	@OneToMany
-	private List<Cliente> Cliente;
+	@ManyToOne
+	private Pessoa Pessoa;
+	@ManyToOne
+	private Cliente Cliente;
+	@Enumerated(EnumType.STRING)
+	private TipoMarcacao Marcacao;
 	@Temporal(TemporalType.TIMESTAMP)
 	private Calendar DataHora;
+	public Pessoa getPessoa() {
+		return Pessoa;
+	}
+	public void setPessoa(Pessoa pessoa) {
+		Pessoa = pessoa;
+	}
+	public Cliente getCliente() {
+		return Cliente;
+	}
+	public void setCliente(Cliente cliente) {
+		Cliente = cliente;
+	}
 	private String LatLong;
 	private String Observacao;
 	
@@ -31,18 +47,6 @@ public class RelogioPonto {
 	}
 	public void setId(Integer id) {
 		Id = id;
-	}
-	public List<Pessoa> getPessoa() {
-		return Pessoa;
-	}
-	public void setPessoa(List<Pessoa> pessoa) {
-		Pessoa = pessoa;
-	}
-	public List<Cliente> getCliente() {
-		return Cliente;
-	}
-	public void setCliente(List<Cliente> cliente) {
-		Cliente = cliente;
 	}
 	public Calendar getDataHora() {
 		return DataHora;
@@ -61,6 +65,12 @@ public class RelogioPonto {
 	}
 	public void setObservacao(String observacao) {
 		Observacao = observacao;
+	}
+	public TipoMarcacao getMarcacao() {
+		return Marcacao;
+	}
+	public void setMarcacao(TipoMarcacao marcacao) {
+		Marcacao = marcacao;
 	}
 	
 	

@@ -28,13 +28,13 @@ public class TestePessoa {
 		ListaPessoas.add(new Pessoa("Tayane da Silva","t.silva@silva.com","Usuario Teste"));
 		
 		List<Cliente> ListaClientes = new ArrayList<>();
-		ListaClientes.add(new Cliente("Walmart","Estados Unidos","63.304621, -76.750488","Super Mercado"));
-		ListaClientes.add(new Cliente("Exxonmobil","Estados Unidos","47.649034, -81.979980",""));
-		ListaClientes.add(new Cliente("Google","Estados Unidos","47.890232, -111.730957","Tecnologia"));
-		ListaClientes.add(new Cliente("Microsoft","Estados Unidos","56.890232, -111.730957","Super Mercado"));
-		ListaClientes.add(new Cliente("Petrochina","China","33.304621, -76.750488","Super Mercado"));
-		ListaClientes.add(new Cliente("Johnson & Johnson","Estados Unidos","43.304621, -76.750488","Super Mercado"));
-		ListaClientes.add(new Cliente("Novartis","Suiça","02.304621, -76.750488","Super Mercado"));
+		ListaClientes.add(new Cliente("Walmart","63.304621, -76.750488","Estados Unidos","Super Mercado"));
+		ListaClientes.add(new Cliente("Exxonmobil","47.649034, -81.979980","Estados Unidos","Moto Club"));
+		ListaClientes.add(new Cliente("Google","47.890232, -111.730957","Estados Unidos","Tecnologia"));
+		ListaClientes.add(new Cliente("Microsoft","56.890232, -111.730957","Estados Unidos","Super Mercado"));
+		ListaClientes.add(new Cliente("Petrochina","33.304621, -76.750488","China","Super Mercado"));
+		ListaClientes.add(new Cliente("Johnson & Johnson","43.304621, -76.750488","Estados Unidos","Super Mercado"));
+		ListaClientes.add(new Cliente("Novartis","02.304621, -76.750488","Suiça","Super Mercado"));
 		
 		
 		em.getTransaction().begin();
@@ -63,9 +63,9 @@ public class TestePessoa {
 		
 		RelogioPonto Ponto = new RelogioPonto();
 		Ponto.setDataHora(cal);
-		Ponto.setCliente(ListaClientes);
-		Ponto.setPessoa(ListaPessoas);
-		Ponto.setLatLong("");
+		Ponto.setCliente(em.find(Cliente.class,3));
+		Ponto.setPessoa(em.find(Pessoa.class, 2));
+		Ponto.setLatLong(em.find(Cliente.class,3).getLatLong());
 		em.persist(Ponto);
 		em.getTransaction().commit();
 		em.close();
